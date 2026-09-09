@@ -29,9 +29,10 @@ export PATH=$PATH:/opt/homebrew/bin
 [[ -f ~/.bash_wd ]] && source ~/.bash_wd
 
 eval "$(starship init bash)"
-alias v=nvim
-alias vi=nvim
-alias nv=nvim
+# -w logs every keystroke (builtin) for vim-habit analysis; local file only
+alias v='nvim -w ~/.local/state/nvim/keys.log'
+alias vi='nvim -w ~/.local/state/nvim/keys.log'
+alias nv='nvim -w ~/.local/state/nvim/keys.log'
 alias ..="cd .."
 alias l="ls -lah"
 alias cr=cresume
@@ -106,3 +107,6 @@ eval "$(zoxide init bash)"
 # export LANG=en_US.UTF-8
 # export LANGUAGE=en
 # source ~/.local/share/blesh/ble.sh
+
+# restore terminal echo after aborted programs (e.g. uvicorn --reload)
+PROMPT_COMMAND="stty sane; $PROMPT_COMMAND"
